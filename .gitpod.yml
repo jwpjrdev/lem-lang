@@ -1,0 +1,2 @@
+tasks:
+- init: ./scripts/init.sh
