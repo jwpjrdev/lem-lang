@@ -20,6 +20,7 @@ jobs:
       run: cargo build --verbose
     - name: Run tests
       run: cargo test --verbose
+    - uses: actions-rs/grcov@v0.1
     - name: Publish to coveralls.io
       uses: coverallsapp/github-action@v1.1.2
       with:
