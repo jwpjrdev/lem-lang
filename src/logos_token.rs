@@ -1,4 +1,4 @@
-pub use logos::Logos;
+use logos::Logos;
 
 #[derive(Logos, Debug, PartialEq)]
 pub enum BasicToken {
@@ -69,7 +69,7 @@ pub enum BasicToken {
     SymbolComma,
     #[token(".")]
     SymbolDot,
-    
+
     // comparators
     #[token("&&")]
     ComparatorAnd,

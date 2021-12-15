@@ -10,7 +10,21 @@ pub enum VarType {
     Boolean,
 }
 
-pub trait AllowedVarType {fn get_type() -> VarType;}
-impl AllowedVarType for String {fn get_type() -> VarType { VarType::String }}
-impl AllowedVarType for f64 {fn get_type() -> VarType { VarType::Integer }}
-impl AllowedVarType for bool {fn get_type() -> VarType { VarType::Boolean }}
+pub trait AllowedVarType {
+    fn get_type() -> VarType;
+}
+impl AllowedVarType for String {
+    fn get_type() -> VarType {
+        VarType::String
+    }
+}
+impl AllowedVarType for f64 {
+    fn get_type() -> VarType {
+        VarType::Integer
+    }
+}
+impl AllowedVarType for bool {
+    fn get_type() -> VarType {
+        VarType::Boolean
+    }
+}

@@ -1,9 +1,9 @@
-use std::ops::Range;
 use crate::logos_token::BasicToken;
-use ::logos::Logos;
+use logos::Logos;
+use std::ops::Range;
 
-pub mod token;
 pub mod logos_token;
+pub mod token;
 pub mod token_collector;
 
 pub fn print_tokens(script: &String) {
@@ -24,6 +24,6 @@ pub fn initial_scan(script: &String) -> Vec<(BasicToken, Range<usize>)> {
 //     let mut vec = Vec<MidLevelToken>::new();
 //     let mut iter = tokens.iter().peekable();
 //     while (iter.next() != None) {
-        
+
 //     }
 // }
