@@ -8,3 +8,4 @@ export RUSTDOCFLAGS="-Cpanic=abort"
 
 # commitizen
 npm i -g commitizen
+commitizen init cz-conventional-changelog --save-dev --save-exact
