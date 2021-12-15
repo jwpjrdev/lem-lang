@@ -9,9 +9,23 @@ pub mod token_collector;
 pub fn print_tokens(script: &String) {
     let tokens: Vec<_> = initial_scan(script);
 
-    for token in tokens {
-        println!("{:?}", token.0);
+    for token in &tokens {
+        println!("{:?}", token);
     }
+
+    println!("------------------");
+
+    for token in strip_token_vec(&tokens) {
+        println!("{:?}", token);
+    }
+}
+
+pub fn strip_token_vec(result: &Vec<(BasicToken, Range<usize>)>) -> Vec<BasicToken> {
+    let mut stripped_vec: Vec<BasicToken> = Vec::new();
+    for (token, _) in result {
+        stripped_vec.push(*token);
+    }
+    stripped_vec
 }
 
 pub fn initial_scan(script: &String) -> Vec<(BasicToken, Range<usize>)> {
