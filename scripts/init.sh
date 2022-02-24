@@ -12,3 +12,4 @@ commitizen init cz-conventional-changelog --save-dev --save-exact
 
 # rustfmt
 rustup component add rustfmt --toolchain nightly
+rustup component add clippy

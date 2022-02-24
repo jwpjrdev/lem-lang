@@ -4,9 +4,9 @@ use std::ops::Range;
 
 pub mod logos_token;
 pub mod token;
-pub mod token_collector;
+// pub mod token_collector;
 
-pub fn print_tokens(script: &String) {
+pub fn print_tokens(script: &str) {
     let tokens: Vec<_> = initial_scan(script);
 
     for token in &tokens {
@@ -28,7 +28,7 @@ pub fn strip_token_vec(result: &Vec<(BasicToken, Range<usize>)>) -> Vec<BasicTok
     stripped_vec
 }
 
-pub fn initial_scan(script: &String) -> Vec<(BasicToken, Range<usize>)> {
+pub fn initial_scan(script: &str) -> Vec<(BasicToken, Range<usize>)> {
     // keep the ranges for future error handling
     let tokens: Vec<_> = BasicToken::lexer(script).spanned().collect();
     tokens
