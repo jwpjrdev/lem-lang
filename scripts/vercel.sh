@@ -1,5 +1,4 @@
 # install dependencies for mdbook to deploy on vercel
 
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-cd $HOME/.cargo/bin/
-./cargo install mdbook
+mkdir bin
+curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.4.15/mdbook-v0.4.15-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=bin
