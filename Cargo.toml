@@ -1,9 +1,9 @@
-[package]
-name = "lem-lang"
-version = "0.1.0"
-edition = "2018"
-license = "MIT"
-authors = ["Joshua Price <me@jwpjr.tech>"]
-
-[dependencies]
-logos = "0.12.0"
+[workspace]
+authors = ["Joshua Price <jwpjr567@gmail.com>"]
+members = [
+    "cli",
+    "docs",
+    "interpreter",
+    "lexer",
+    "parser",
+]
