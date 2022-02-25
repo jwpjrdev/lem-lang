@@ -1,6 +1,7 @@
 tasks:
-  - init: |
-      cargo install mdbook
+  - name: Start mdbook
+    init: cargo install mdbook
+    command: mdbook serve docs/ --open
 
 ports:
   # docs
