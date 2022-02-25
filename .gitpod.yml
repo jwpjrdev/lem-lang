@@ -1,0 +1,8 @@
+tasks:
+  - init: |
+      cargo install mdbook
+
+ports:
+  # docs
+  - port: 3000
+    onOpen: open-browser
