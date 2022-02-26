@@ -70,6 +70,9 @@ pub enum BasicToken {
     SymbolComma,
     #[token(".")]
     SymbolDot,
+    // lem doesn't use semicolons but lexing them anyways makes error handling easier
+    #[token(";")]
+    SymbolSemicolon,
 
     // comparators
     #[token("&&")]
@@ -133,7 +136,7 @@ mod tests {
     #[test]
     fn test_lexer() {
         let tokens = "nameof is true false int string boolean throw let if else for in while return fn
-    ( ) [ ] { } = + - * / % ! ^ , .
+    ( ) [ ] { } = + - * / % ! ^ , . ;
     && || == != > < >= <= 10 10.1 \"string\" identifier
     // comment";
         let result = crate::initial_scan(&tokens.to_string());
@@ -170,6 +173,7 @@ mod tests {
             SymbolPower,
             SymbolComma,
             SymbolDot,
+            SymbolSemicolon,
             ComparatorAnd,
             ComparatorOr,
             ComparatorEqual,
