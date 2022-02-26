@@ -2,11 +2,16 @@ build:
     cargo build
 
 testing: build
-    cargo run -p cli -- examples/println.lem
+    cargo run -p lem-cli -- examples/println.lem
 
 # todo: custom test runner
 test: build
     cargo test
+
+clean:
+    cargo clean
+    cd docs && 
+    mdbook clean
 
 # for whatever reason, this doesn't work if they're on seperate lines
 serve-book:

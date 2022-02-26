@@ -1,8 +1,0 @@
-[package]
-name = "interpreter"
-authors = ["Joshua Price <jwpjr567@gmail.com>"]
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]
-logos = "0.12.0"

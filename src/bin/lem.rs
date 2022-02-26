@@ -24,7 +24,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                         let script = std::fs::read_to_string(path)?;
                         // this doesn't check for things like \n or \r
                         if !script.trim().is_empty() {
-                            interpreter::execute_script(script);
+                            lem::execute_script(script);
                         } else {
                             eprintln!("The provided script file is empty");
                         }

@@ -1,5 +1,12 @@
-[workspace]
-members = [
-    "crates/cli",
-    "crates/interpreter",
-]
+[package]
+name = "lem"
+description = "The power of Bash with a cleaner syntax"
+authors = ["Joshua Price <jwpjr567@gmail.com>"]
+keywords = ["language", "rust", "scripting", "scripting-language", "lem", "lang", "lem-lang"]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+[dependencies]
+clap = { version = "3.1.2", features = ["cargo", "derive"] }
+logos = "0.12.0"
