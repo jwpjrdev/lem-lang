@@ -115,14 +115,14 @@ pub enum BasicToken {
     Error,
 }
 
-pub fn initial_scan(script: &str) -> Vec<(crate::BasicToken, Range<usize>)> {
+pub fn initial_scan(script: &str) -> Vec<(self::BasicToken, Range<usize>)> {
     // keep the ranges for future error handling
-    let tokens: Vec<_> = crate::BasicToken::lexer(script).spanned().collect();
+    let tokens: Vec<_> = self::BasicToken::lexer(script).spanned().collect();
     tokens
 }
 
-pub fn strip_token_vec(result: &Vec<(crate::BasicToken, Range<usize>)>) -> Vec<crate::BasicToken> {
-    let mut stripped_vec: Vec<crate::BasicToken> = Vec::new();
+pub fn strip_token_vec(result: &Vec<(self::BasicToken, Range<usize>)>) -> Vec<self::BasicToken> {
+    let mut stripped_vec: Vec<self::BasicToken> = Vec::new();
     for (token, _) in result {
         stripped_vec.push(*token);
     }
@@ -131,7 +131,7 @@ pub fn strip_token_vec(result: &Vec<(crate::BasicToken, Range<usize>)>) -> Vec<c
 
 #[cfg(test)]
 mod tests {
-    use crate::BasicToken::*;
+    use crate::lexer::BasicToken::*;
 
     #[test]
     fn test_lexer() {
@@ -139,8 +139,8 @@ mod tests {
     ( ) [ ] { } = + - * / % ! ^ , . ;
     && || == != > < >= <= 10 10.1 \"string\" identifier
     // comment";
-        let result = crate::initial_scan(&tokens.to_string());
-        assert_eq!(crate::strip_token_vec(&result), vec! [
+        let result = crate::lexer::initial_scan(&tokens.to_string());
+        assert_eq!(crate::lexer::strip_token_vec(&result), vec! [
             KeywordNameof,
             KeywordIs,
             KeywordTrue,
@@ -192,8 +192,8 @@ mod tests {
 
     #[test]
     fn test_strip_token_vec() {
-        let lexed = crate::initial_scan(&"nameof".to_string());
-        let stripped = crate::strip_token_vec(&lexed);
+        let lexed = crate::lexer::initial_scan(&"nameof".to_string());
+        let stripped = crate::lexer::strip_token_vec(&lexed);
         assert_eq!(lexed.get(0).unwrap().0, *stripped.get(0).unwrap());
     }
 }

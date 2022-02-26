@@ -1,4 +1,7 @@
-use lexer::*;
+use crate::lexer::*;
+
+pub mod lexer;
+pub mod parser;
 
 // todo: return exit code
 pub fn execute_script(script: String) {
