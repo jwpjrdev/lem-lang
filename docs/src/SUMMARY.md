@@ -1,6 +1,7 @@
 # Summary
 
 [Introduction](README.md)
+
 # Language
 - [Getting Started](getting-started.md)
 - [Variables](ch1-variables/ch1-prefix.md)
