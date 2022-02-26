@@ -1,8 +1,0 @@
-# These settings are synced to GitHub by https://probot.github.io/apps/settings/
-
-repository:
-  name: lem-lang
-  description: The power of Bash with a cleaner syntax
-  homepage: https://lemonmobile.github.io
-  topics: lem, lem-lang, language, lang
-  delete_branch_on_merge: true
