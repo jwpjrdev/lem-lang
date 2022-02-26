@@ -139,7 +139,7 @@ mod tests {
     ( ) [ ] { } = + - * / % ! ^ , . ;
     && || == != > < >= <= 10 10.1 \"string\" identifier
     // comment";
-        let result = crate::lexer::initial_scan(&tokens.to_string());
+        let result = crate::lexer::initial_scan(tokens);
         assert_eq!(crate::lexer::strip_token_vec(&result), vec! [
             KeywordNameof,
             KeywordIs,
@@ -192,7 +192,7 @@ mod tests {
 
     #[test]
     fn test_strip_token_vec() {
-        let lexed = crate::lexer::initial_scan(&"nameof".to_string());
+        let lexed = crate::lexer::initial_scan("nameof");
         let stripped = crate::lexer::strip_token_vec(&lexed);
         assert_eq!(lexed.get(0).unwrap().0, *stripped.get(0).unwrap());
     }

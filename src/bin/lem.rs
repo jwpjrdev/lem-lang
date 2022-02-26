@@ -19,7 +19,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             if path.is_file() {
                 // for now, require the .lem file extension to run
                 if let Some(extension) = path.extension() {
-                    if extension.to_str().unwrap() == String::from("lem") {
+                    if extension.to_str().unwrap() == "lem" {
                         println!("Executing {}", path.display());
                         let script = std::fs::read_to_string(path)?;
                         // this doesn't check for things like \n or \r

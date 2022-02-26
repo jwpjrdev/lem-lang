@@ -21,7 +21,8 @@ release: dev-install
     cargo build --release
 
 dev-install:
-    cargo install rustfmt
+# rustup default nightly
+# rustup component add rustfmt --toolchain nightly
     cargo install clippy
     cargo install mdbook
 
