@@ -128,7 +128,7 @@ pub fn strip_token_vec(result: &Vec<(crate::BasicToken, Range<usize>)>) -> Vec<c
 
 #[cfg(test)]
 mod tests {
-    use crate::BasicToken::{self, *};
+    use crate::BasicToken::*;
 
     #[test]
     fn test_lexer() {
