@@ -1,7 +1,7 @@
 use clap::{command, arg};
 use std::path::Path;
 
-fn main() -> Result<(), std::io::Error> {
+fn main() -> Result<(), Box<dyn std::error::Error>> {
     // lem path/to/script.lem
     let matches = command!()
         .name("lem-cli")
