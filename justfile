@@ -1,6 +1,9 @@
 build:
     cargo build
 
+testing: build
+    cargo run -p cli -- examples/println.lem
+
 test: build
     cargo test
     # custom test runner

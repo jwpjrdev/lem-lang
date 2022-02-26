@@ -1,0 +1,4 @@
+// todo: adding a semicolon will result in error,
+// perhaps give a useful suggestion as output to remove the semicolon?
+// decent error output & interpretation would be nice anyways
+println("Hello, world!")
