@@ -1,5 +1,4 @@
 [workspace]
-authors = ["Joshua Price <jwpjr567@gmail.com>"]
 members = [
     "crates/cli",
     "crates/interpreter",
