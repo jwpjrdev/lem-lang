@@ -10,12 +10,11 @@ test: build
 
 clean:
     cargo clean
-    cd docs && 
-    mdbook clean
+    cd docs && mdbook clean
 
 # for whatever reason, this doesn't work if they're on seperate lines
 serve-book:
-    cd docs && mdbook serve
+    mdbook serve docs/
 
 # todo: ci integration
 release: dev-install
