@@ -1,9 +1,8 @@
 [workspace]
 authors = ["Joshua Price <jwpjr567@gmail.com>"]
 members = [
-    "cli",
-    "docs",
-    "interpreter",
-    "lexer",
-    "parser",
+    "crates/cli",
+    "crates/interpreter",
+    "crates/lexer",
+    "crates/parser",
 ]

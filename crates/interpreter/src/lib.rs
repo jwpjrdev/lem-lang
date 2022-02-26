@@ -1,3 +1,5 @@
+use lexer::*;
+
 pub fn print_tokens(script: &str) {
     let tokens: Vec<_> = initial_scan(script);
 
