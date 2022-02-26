@@ -15,6 +15,8 @@
     - [Loops]()
     - [Comparison Operators]()
 - [Built-ins]()
+    - [println & print]()
+    - [exec]()
 
 [Contributing](./contributing.md)
 [Security](./security.md)
