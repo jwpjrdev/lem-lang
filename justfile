@@ -4,13 +4,17 @@ build:
 testing: build
     cargo run -p cli -- examples/println.lem
 
+# todo: custom test runner
 test: build
     cargo test
-    # custom test runner
 
+# for whatever reason, this doesn't work if they're on seperate lines
+serve-book:
+    cd docs && mdbook serve
+
+# todo: ci integration
 release: dev-install
     cargo build --release
-    # todo: ci integration
 
 dev-install:
     cargo install rustfmt
