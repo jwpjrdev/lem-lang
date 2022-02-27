@@ -9,4 +9,4 @@ The `println` built-in can print strings, integers, arrays, and booleans. It can
 ```js
 println("Look, a number: " + 6);
 ```
-As demonstrated on the [strings page](./ch1-strings.md), concatenating mismatching types outside of the `println` built-in will cause an error.
+As demonstrated on the [strings page](./ch1-strings.md), concatenating mismatching types outside of the `println` built-in will cause an error (see [println & print](../ch3-functions/built-ins/printing.md) for more information).
