@@ -25,7 +25,7 @@ $ touch helloWorld.lem
 Open the file in your text editor of choice, and write the following:
 <!-- for now, use JS for code samples until syntax highlighting is added for Lem -->
 ```js
-println("Hello, world!")
+println("Hello, world!");
 ```
 Now, open your terminal, `cd` to the working directory, and run the following:
 ```
