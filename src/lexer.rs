@@ -8,6 +8,8 @@ pub enum BasicToken {
     KeywordNameof,
     #[token("is")]
     KeywordIs,
+    #[token("null")]
+    KeywordNull,
     #[token("true")]
     KeywordTrue,
     #[token("false")]
@@ -135,7 +137,7 @@ mod tests {
 
     #[test]
     fn test_lexer() {
-        let tokens = "nameof is true false int string boolean throw let if else for in while return fn
+        let tokens = "nameof is null true false int string boolean throw let if else for in while return fn
     ( ) [ ] { } = + - * / % ! ^ , . ;
     && || == != > < >= <= 10 10.1 \"string\" identifier
     // comment";
@@ -143,6 +145,7 @@ mod tests {
         assert_eq!(crate::lexer::strip_token_vec(&result), vec! [
             KeywordNameof,
             KeywordIs,
+            KeywordNull,
             KeywordTrue,
             KeywordFalse,
             KeywordInt,
