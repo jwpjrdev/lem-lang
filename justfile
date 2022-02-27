@@ -2,7 +2,7 @@ build:
     cargo build
 
 testing: build
-    cargo run -p lem-cli -- examples/println.lem
+    cargo run -- examples/println.lem
 
 # todo: custom test runner
 test: build
