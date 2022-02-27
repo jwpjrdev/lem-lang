@@ -24,17 +24,17 @@ println(helloWorld);
 
 This program errors because `string` and `num` are of mismatching types (string and integer):
 ```js
-let string = "Look, a string!";
+let str = "Look, a string!";
 let num = 3;
 
-println(string + num);
+println(str + num);
 ```
 Integers can be observed more in-depth on [their page](./ch1-integers.md).
 
 You can also split a string into an array of strings, like so:
-```rs,ignore
-let string = "Item 1, Item 2, Item 3";
-let array = string.split(", ");
+```rust,ignore
+let str = "Item 1, Item 2, Item 3";
+let array = str.split(", ");
 println(array);
 ```
 ```
