@@ -23,5 +23,5 @@ release: dev-install
 # rustup default nightly
 # rustup component add rustfmt --toolchain nightly
 dev-install:
-    cargo install clippy
+    rustup component add clippy-preview
     cargo install mdbook
