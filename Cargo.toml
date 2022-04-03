@@ -1,6 +1,6 @@
 [package]
 name = "lem"
-description = "The power of Bash with a cleaner syntax"
+description = "A maintainable & intuitive Bash alternative"
 authors = ["Joshua Price <jwpjr567@gmail.com>"]
 keywords = ["language", "rust", "scripting", "scripting-language", "lem", "lang", "lem-lang"]
 version = "0.1.0"
