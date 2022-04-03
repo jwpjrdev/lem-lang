@@ -1,0 +1,5 @@
+let thing = "Hello, ";
+let other_thing = "world!";
+
+print(thing);
+println(other_thing);
