@@ -32,7 +32,7 @@ impl Interpreter {
                 Node::Call(call) => {
                     let builtin_ident = call.ident.as_str();
 
-                    let to_run = match self.builtins.get(builtin_ident) {
+                    let builtin = match self.builtins.get(builtin_ident) {
                         Some(builtin) => builtin,
                         None => panic!("builtin '{builtin_ident} not found'"),
                     };
@@ -47,40 +47,8 @@ impl Interpreter {
                             }
                         },
                     };
-                    (to_run.execute)(args);
-                    // match call.ident.as_str() {
-                    //     "println" => {
-                    //         match call.args {
-                    //             Args::String { value } => {
-                    //                 println!("{value}");
-                    //             },
-                    //             Args::Variable { ident } => {
-                    //                 let value = match var_store.get(&ident) {
-                    //                     Some(value) => value,
-                    //                     None => panic!("the variable {ident} does not exist"),
-                    //                 };
-                    //                 println!("{value}");
-                    //             },
-                    //         }
-                    //     },
-                    //     "print" => {
-                    //         match call.args {
-                    //             Args::String { value } => {
-                    //                 print!("{value}");
-                    //             },
-                    //             Args::Variable { ident } => {
-                    //                 let value = match var_store.get(&ident) {
-                    //                     Some(value) => value,
-                    //                     None => panic!("the variable {ident} does not exist"),
-                    //                 };
-                    //                 print!("{value}");
-                    //             },
-                    //         }
-                    //     },
-                    //     _ => {
-                    //         eprintln!("unknown identifier: {}", call.ident);
-                    //     },
-                    // }
+
+                    (builtin.execute)(args);
                 },
                 Node::VarDecl(var_decl) => {
                     var_store.insert(var_decl.ident, var_decl.data);
