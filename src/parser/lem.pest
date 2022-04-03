@@ -13,7 +13,8 @@ ident = @{
     "_" ~ ident_char+
 }
 
-# todo: heavily simplify; this is able to parse rust strings in their (almost) entirety
+// todo: heavily simplify; this is able to parse rust strings in their (almost) entirety
+
 string = { "\"" ~ (raw_string | escape)* ~ "\"" }
 raw_string = { (!("\\" | "\"") ~ ANY)+ }
 hex = _{ '0'..'9' | 'a'..'f' | 'A'..'F' }
