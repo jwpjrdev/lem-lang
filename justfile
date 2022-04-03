@@ -1,8 +1,10 @@
 build:
     cargo build
 
-testing: build
-    cargo run -- examples/printing.lem
+# just example strings
+set positional-arguments
+@example file: build
+    cargo run -- examples/$1.lem
 
 # todo: custom test runner
 test: build
