@@ -1,7 +1,7 @@
 use crate::ast::{File, Node};
 
 pub fn interpret(file: File) {
-    'loop2: for node in file.nodes {
+    for node in file.nodes {
         match node {
             Node::Call(call) => {
                 match call.ident.as_str() {
@@ -17,8 +17,7 @@ pub fn interpret(file: File) {
                 }
             },
             Node::EOI => {
-                println!("[lem] finished");
-                break 'loop2;
+                break;
             },
         }
     }
