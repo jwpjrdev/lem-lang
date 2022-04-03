@@ -1,10 +1,10 @@
 use std::collections::HashMap;
 use crate::ast::*;
 
-#[derive(Clone, Copy)]
+// #[derive(Clone, Copy)]
 pub struct Builtin {
-    pub ident: &'static str,
-    pub execute: &'static dyn Fn(String),
+    pub ident: String,
+    pub execute: Box<dyn Fn(String)>,
 }
 
 pub struct Interpreter {
@@ -18,9 +18,9 @@ impl Interpreter {
         }
     }
 
-    pub fn add_builtin(mut self, builtin: &Builtin) -> Self {
-        let identifier = builtin.ident;
-        self.builtins.insert(identifier.to_string(), *builtin);
+    pub fn add_builtin(mut self, builtin: Builtin) -> Self {
+        let identifier = builtin.ident.clone();
+        self.builtins.insert(identifier.to_string(), builtin);
         self
     }
 

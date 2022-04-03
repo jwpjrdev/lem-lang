@@ -19,17 +19,17 @@ pub fn execute_script(script: String) {
     // println!("{syntax_tree:#?}");
 
     Interpreter::new()
-        .add_builtin(&Builtin {
+        .add_builtin(Builtin {
             ident: "println".into(),
-            execute: &|args| {
+            execute: Box::new(|args| {
                 println!("{args}");
-            },
+            }),
         })
-        .add_builtin(&Builtin {
+        .add_builtin(Builtin {
             ident: "print".into(),
-            execute: &|args| {
+            execute: Box::new(|args| {
                 print!("{args}");
-            },
+            }),
         })
         .interpret(syntax_tree);
 }
