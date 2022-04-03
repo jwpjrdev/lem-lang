@@ -1,7 +1,6 @@
 use std::collections::HashMap;
 use crate::ast::*;
 
-// #[derive(Clone, Copy)]
 pub struct Builtin {
     pub ident: String,
     pub execute: Box<dyn Fn(String)>,
