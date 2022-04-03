@@ -9,3 +9,7 @@ ports:
   # docs
   - port: 3000
     onOpen: open-browser
+
+vscode:
+  extensions:
+    - matklad.rust-analyzer

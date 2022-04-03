@@ -1,23 +1,19 @@
-use crate::lexer::*;
+use pest::Parser;
+use crate::parser::{LemParser, Rule};
+// use crate::ast::File;
 
-pub mod lexer;
+pub mod ast;
+pub mod interp;
 pub mod parser;
 
 // todo: return exit code
 pub fn execute_script(script: String) {
-    print_tokens(&script);
-}
+    let parse_tree = LemParser::parse(Rule::file, &script)
+        .unwrap_or_else(|err| panic!("{err}"));
 
-pub fn print_tokens(script: &str) {
-    let tokens: Vec<_> = initial_scan(script);
+    let syntax_tree = crate::ast::generate_ast(parse_tree);
 
-    for token in &tokens {
-        println!("{:?}", token);
-    }
+    crate::interp::interpret(syntax_tree);
 
-    println!("------------------");
-
-    for token in strip_token_vec(&tokens) {
-        println!("{:?}", token);
-    }
+    // println!("{syntax_tree:#?}");
 }

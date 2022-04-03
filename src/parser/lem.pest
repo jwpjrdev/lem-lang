@@ -1,0 +1,33 @@
+file = { SOI ~ call* ~ WHITESPACE* ~ EOI }
+
+args = { string }
+call = { ident ~ paren_open ~ args? ~ paren_close ~ semicolon? }
+
+paren_open = _{ "(" }
+paren_close = _{ ")" }
+semicolon = _{ ";" }
+
+ident_char = { alpha | digit | "_" }
+ident = @{
+	alpha ~ ident_char* |
+    "_" ~ ident_char+
+}
+
+# todo: heavily simplify; this is able to parse rust strings in their (almost) entirety
+string = { "\"" ~ (raw_string | escape)* ~ "\"" }
+raw_string = { (!("\\" | "\"") ~ ANY)+ }
+hex = _{ '0'..'9' | 'a'..'f' | 'A'..'F' }
+unicode_hex = { hex{1, 6} }
+predefined = { "n" | "r" | "t" | "\\" | "0" | "\"" | "'" }
+byte = { "x" ~ hex{2} }
+unicode = { "u" ~ "{" ~ unicode_hex ~ "}" }
+escape = { "\\" ~ (predefined | byte | unicode) }
+
+var_type = { string_type }
+string_type = { "string" }
+
+// Utilities
+alpha = { 'a'..'z' | 'A'..'Z' }
+digit = _{ '0'..'9' }
+
+WHITESPACE = _{ " " | "\n" | "\r" | "\r\n" }
