@@ -1,6 +1,7 @@
 use pest::Parser;
+
 use crate::parser::{LemParser, Rule};
-// use crate::ast::File;
+use crate::interp::{Builtin, Interpreter};
 
 pub mod ast;
 pub mod interp;
@@ -15,6 +16,20 @@ pub fn execute_script(script: String) {
 
     let syntax_tree = crate::ast::generate_ast(parse_tree);
     
-    println!("{syntax_tree:#?}");
-    crate::interp::interpret(syntax_tree);
+    // println!("{syntax_tree:#?}");
+
+    Interpreter::new()
+        .add_builtin(&Builtin {
+            ident: "println".into(),
+            execute: &|args| {
+                println!("{args}");
+            },
+        })
+        .add_builtin(&Builtin {
+            ident: "print".into(),
+            execute: &|args| {
+                print!("{args}");
+            },
+        })
+        .interpret(syntax_tree);
 }
