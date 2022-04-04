@@ -3,6 +3,7 @@ tasks:
     init: |
       cargo install just
       just dev-install
+      just build
     command: mdbook serve docs/ --open
 
 ports:
