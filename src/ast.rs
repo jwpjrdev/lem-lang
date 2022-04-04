@@ -27,16 +27,6 @@ pub enum Args {
 }
 
 #[derive(Debug)]
-pub struct StringArg {
-    pub value: String,
-}
-
-#[derive(Debug)]
-pub struct VariableArg {
-    pub ident: String,
-}
-
-#[derive(Debug)]
 pub struct VarDecl {
     pub ident: String,
     pub data: String,
@@ -77,7 +67,6 @@ fn visit_decl(decl: Pair<Rule>, nodes: &mut Vec<Node>) {
 }
 
 fn visit_call(call: Pair<Rule>, nodes: &mut Vec<Node>) {
-
     let mut ident = String::new();
     let mut args = Args::None;
 
