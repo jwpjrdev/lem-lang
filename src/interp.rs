@@ -3,7 +3,7 @@ use crate::ast::*;
 
 pub struct Builtin {
     pub ident: String,
-    pub execute: Box<dyn Fn(String)>,
+    pub execute: Box<dyn Fn(Option<String>)>,
 }
 
 pub struct Interpreter {
@@ -35,15 +35,18 @@ impl Interpreter {
                         Some(builtin) => builtin,
                         None => panic!("builtin '{builtin_ident} not found'"),
                     };
-                    let args = match call.args {
+                    let args: Option<String> = match call.args {
                         Args::String { value } => {
-                            value
+                            Some(value)
                         },
                         Args::Variable { ident } => {
                             match var_store.get(&ident) {
-                                Some(value) => value.to_string(),
+                                Some(value) => Some(value.to_string()),
                                 None => panic!("the variable {ident} does not exist"),
                             }
+                        },
+                        Args::None => {
+                            None
                         },
                     };
 

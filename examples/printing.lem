@@ -1,2 +1,6 @@
+println("Hello, world!");
+
+println();
+
 print("Hello, ");
 println("world!");

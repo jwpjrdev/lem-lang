@@ -23,6 +23,7 @@ pub struct Call {
 pub enum Args {
     String { value: String },
     Variable { ident: String },
+    None,
 }
 
 #[derive(Debug)]
@@ -78,7 +79,7 @@ fn visit_decl(decl: Pair<Rule>, nodes: &mut Vec<Node>) {
 fn visit_call(call: Pair<Rule>, nodes: &mut Vec<Node>) {
 
     let mut ident = String::new();
-    let mut args: Option<Args> = None;
+    let mut args = Args::None;
 
     for inner in call.into_inner() {
         match inner.as_rule() {
@@ -86,7 +87,7 @@ fn visit_call(call: Pair<Rule>, nodes: &mut Vec<Node>) {
                 ident = visit_ident(inner);
             },
             Rule::args => {
-                args = Some(visit_args(inner));
+                args = visit_args(inner);
             },
             _ => unreachable!(),
         }
@@ -95,10 +96,7 @@ fn visit_call(call: Pair<Rule>, nodes: &mut Vec<Node>) {
     nodes.push(
         Node::Call(Call {
             ident: ident,
-            args: match args {
-                Some(args) => args,
-                None => unreachable!(),
-            },
+            args: args,
         })
     );
 }

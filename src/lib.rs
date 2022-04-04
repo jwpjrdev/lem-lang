@@ -22,13 +22,25 @@ pub fn execute_script(script: String) {
         .add_builtin(Builtin {
             ident: "println".into(),
             execute: Box::new(|args| {
-                println!("{args}");
+                match args {
+                    Some(args) => {
+                        println!("{args}");
+                    },
+                    None => {
+                        println!();
+                    },
+                }
             }),
         })
         .add_builtin(Builtin {
             ident: "print".into(),
             execute: Box::new(|args| {
-                print!("{args}");
+                match args {
+                    Some(args) => {
+                        print!("{args}");
+                    },
+                    None => {}
+                }
             }),
         })
         .interpret(syntax_tree);
