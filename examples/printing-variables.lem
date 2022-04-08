@@ -1,0 +1,5 @@
+debug("Hello, world!");
+debug("Hello, world!", "Test");
+let test = "something";
+let test2 = test;
+debug("Hello, world!", test, "thing");

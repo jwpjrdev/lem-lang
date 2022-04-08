@@ -20,16 +20,44 @@ pub struct Call {
 }
 
 #[derive(Debug)]
-pub enum Args {
+pub struct Args {
+    args: Vec<Value>,
+}
+
+impl Args {
+    fn new() -> Args {
+        Args { args: vec![] }
+    }
+
+    pub fn from_values(values: Vec<Value>) -> Args {
+        Args { args: values }
+    }
+
+    pub fn has_args(self) -> bool {
+        !self.args.is_empty()
+    }
+}
+
+impl IntoIterator for Args {
+    type Item = Value;
+    type IntoIter = std::vec::IntoIter<Self::Item>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        self.args.into_iter()
+    }
+}
+
+#[derive(Debug)]
+pub enum Value {
     String { value: String },
-    Variable { ident: String },
-    None,
+    VarRef { ident: String },
+    TempNone,
 }
 
 #[derive(Debug)]
 pub struct VarDecl {
     pub ident: String,
-    pub data: String,
+    pub data: Value,
 }
 
 // todo: move visitors into struct that holds parse_tree
@@ -68,7 +96,7 @@ fn visit_decl(decl: Pair<Rule>, nodes: &mut Vec<Node>) {
 
 fn visit_call(call: Pair<Rule>, nodes: &mut Vec<Node>) {
     let mut ident = String::new();
-    let mut args = Args::None;
+    let mut args = Args::new(); 
 
     for inner in call.into_inner() {
         match inner.as_rule() {
@@ -92,15 +120,15 @@ fn visit_call(call: Pair<Rule>, nodes: &mut Vec<Node>) {
 
 fn visit_var_decl(var_decl: Pair<Rule>, nodes: &mut Vec<Node>) {
     let mut ident = String::new();
-    let mut data = String::new();
+    let mut data = Value::TempNone;
 
     for inner in var_decl.into_inner() {
         match inner.as_rule() {
             Rule::ident => {
                 ident = visit_ident(inner);
             },
-            Rule::string => {
-                data = visit_string(inner);
+            Rule::value => {
+                data = visit_value(inner);
             },
             _ => unreachable!(),
         }
@@ -115,28 +143,48 @@ fn visit_var_decl(var_decl: Pair<Rule>, nodes: &mut Vec<Node>) {
 }
 
 fn visit_args(args: Pair<Rule>) -> Args {
-    let inner = args.into_inner().next().unwrap();
+    let mut values: Vec<Value> = vec![];
+
+    for inner in args.into_inner() {
+        match inner.as_rule() {
+            Rule::value => {
+                values.push(visit_value(inner));
+            },
+            _ => unreachable!(),
+        }
+    }
+    
+    Args::from_values(values)
+}
+
+fn visit_value(value: Pair<Rule>) -> Value {
+    let inner = value.into_inner().next().unwrap();
+
     match inner.as_rule() {
         Rule::string => {
-            Args::String {
+            Value::String {
                 value: visit_string(inner),
             }
         },
         Rule::ident => {
-            Args::Variable {
-                ident: visit_string(inner),
+            Value::VarRef {
+                ident: visit_ident(inner),
             }
-        }
+        },
         _ => unreachable!(),
     }
+}
+
+fn visit_string(string: Pair<Rule>) -> String {
+    clean_string(string.as_span().as_str().to_string())
 }
 
 // This is a bit hacky but I couldn't quite get the grammar to
 // include beginning and trailing whitespace in raw strings.
 // #replace (instead of removing from beginning and end) only works
 // because "\"" already isn't allowed in strings.
-fn visit_string(string: Pair<Rule>) -> String {
-    string.as_span().as_str().to_string().replace("\"", "")
+fn clean_string(string: String) -> String {
+    string.replace("\"", "")
 }
 
 fn visit_ident(ident: Pair<Rule>) -> String {
