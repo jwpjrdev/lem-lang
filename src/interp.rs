@@ -22,7 +22,7 @@ impl Interpreter {
     }
 
     pub fn interpret(self, file: File) -> Self {
-        let mut var_store: HashMap<String, Box<Value>> = HashMap::new();
+        let mut var_store: HashMap<String, Value> = HashMap::new();
 
         for node in file.nodes {
             match node {
@@ -57,7 +57,7 @@ impl Interpreter {
                     (builtin.execute)(args);
                 },
                 Node::VarDecl(var_decl) => {
-                    var_store.insert(var_decl.ident, Box::new(var_decl.data));
+                    var_store.insert(var_decl.ident, var_decl.data);
                 },
                 Node::EOI => {
                     break;
