@@ -1,0 +1,10 @@
+let example = "one";
+{
+    example = "two";
+    {
+        example = "three";
+        println(example);
+    }
+    println(example);
+}
+println(example);

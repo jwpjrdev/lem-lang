@@ -1,66 +1,34 @@
 use pest::Parser;
+use stopwatch::Stopwatch;
 
 use crate::parser::{LemParser, Rule};
-use crate::interp::{Builtin, Interpreter};
-use crate::ast::Value;
+use crate::interp::Interpreter;
 
-pub mod ast;
-pub mod interp;
 pub mod parser;
+pub mod interp;
 
 // todo: return exit code & execution history
-pub fn execute_script(script: String) {
-    let parse_tree = LemParser::parse(Rule::file, &script)
-        .unwrap_or_else(|err| panic!("{err}"));
+pub fn execute_script(script: &String) {
+    let sw = Stopwatch::start_new();
+    let mut parse_sw = Stopwatch::start_new();
+    let parse_tree = LemParser::parse_with_timer(&script);
+    parse_sw.stop();
 
     println!("{parse_tree:#?}");
 
-    let syntax_tree = crate::ast::generate_ast(parse_tree);
-    
-    println!("{syntax_tree:#?}");
+    // let mut ast_sw = Stopwatch::start_new();
+    // let syntax_tree = SyntaxTree::new(parse_tree);
+    // ast_sw.stop();
 
-    Interpreter::new()
-        // .add_builtin(Builtin {
-        //     ident: "println".into(),
-        //     execute: Box::new(|args| {
-        //         match args {
-        //             Some(args) => {
-        //                 println!("{args}");
-        //             },
-        //             None => {
-        //                 println!();
-        //             },
-        //         }
-        //     }),
-        // })
-        // .add_builtin(Builtin {
-        //     ident: "print".into(),
-        //     execute: Box::new(|args| {
-        //         match args {
-        //             Some(args) => {
-        //                 print!("{args}");
-        //             },
-        //             None => {},
-        //         }
-        //     }),
-        // })
-        .add_builtin(Builtin {
-            ident: "debug".into(),
-            execute: Box::new(|args| {
+    // println!("{syntax_tree:#?}");
 
-                println!("debug");
-                for arg in args.into_iter() {
-                    match arg {
-                        Value::String { value } => {
-                            println!("- value: {value}");
-                        },
-                        Value::VarRef { ident } => {
-                            println!("- ident: {ident}");
-                        },
-                        _ => {}, // todo: eliminate Value::TempNone
-                    }
-                }
-            }),
-        })
-        .interpret(syntax_tree);
+    // let mut interp_sw = Stopwatch::start_new();
+    // let interpreter = Interpreter;
+    // interpreter.interpret(syntax_tree);
+    // interp_sw.stop();
+
+    println!("\nFinished in {}μs", sw.elapsed().as_micros());
+    println!("- parser: {}μs", parse_sw.elapsed().as_micros());
+    // println!("- ast: {}μs", ast_sw.elapsed().as_micros());
+    // println!("- interp: {}μs", interp_sw.elapsed().as_micros());
 }

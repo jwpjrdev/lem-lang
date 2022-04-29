@@ -9,5 +9,13 @@ license = "MIT"
 
 [dependencies]
 clap = { version = "3.1.2", features = ["cargo", "derive"] }
-pest = "2.1.0"
+pest = { git = "https://github.com/lemonmobile/pest" }
 pest_derive = "2.1.0"
+stopwatch = "0.0.7"
+
+[dev-dependencies]
+criterion = "0.3"
+
+[[bench]]
+name = "complete"
+harness = false

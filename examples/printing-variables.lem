@@ -1,5 +1,9 @@
 debug("Hello, world!");
-debug("Hello, world!", "Test");
-let test = "something";
-let test2 = test;
-debug("Hello, world!", test, "thing");
+debug("Hello, world!", "test");
+
+let example = "something";
+let example2 = example;
+debug("Hello, world!", example, example2);
+
+example = "hi";
+debug(example);

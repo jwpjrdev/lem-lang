@@ -1,12 +1,16 @@
 file = { SOI ~ decl* ~ WHITESPACE* ~ EOI }
 
-decl = { call | var_decl }
+decl = { call | var_decl | var_reassign | block }
+block = { brace_open ~ decl* ~ brace_close }
 args = { value ~ (comma ~ value)* }
 value = { ident | string }
 call = { ident ~ paren_open ~ args? ~ paren_close ~ semicolon }
 var_decl = { "let " ~ ident ~ "=" ~ value ~ semicolon }
+var_reassign = { ident ~ "=" ~ value ~ semicolon }
 
 comma = _{ "," }
+brace_open = _{ "{" }
+brace_close = _{ "}" }
 paren_open = _{ "(" }
 paren_close = _{ ")" }
 semicolon = _{ ";" }
@@ -18,7 +22,7 @@ ident = @{
 }
 
 string = { "\"" ~ raw_string ~ "\"" }
-raw_string = _{ (!("\\" | "\"") ~ ANY)+ }
+raw_string = _{ (!("\\" | "\"") ~ ANY)* }
 
 var_type = { string_type }
 string_type = { "string" }
