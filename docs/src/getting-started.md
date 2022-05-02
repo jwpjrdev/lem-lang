@@ -10,9 +10,9 @@ $ cargo install lem
 ```
 If you don't, or you don't want to build Lem from scratch, there are pre-built binaries available:
 ```
-$ <curl & unzip release from GitHub>
-$ <don't forget about adding the binary to PATH>
+$ curl -LSfs https://lem.jwpjr.tech/install | sh
 ```
+TODO: add Windows command
 
 ## Your First Script
 
