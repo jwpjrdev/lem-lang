@@ -3,7 +3,7 @@ name = "lem"
 description = "A maintainable & intuitive Bash alternative"
 authors = ["Joshua Price <jwpjr567@gmail.com>"]
 keywords = ["language", "rust", "scripting", "scripting-language", "lem", "lang", "lem-lang"]
-version = "0.1.0"
+version = "0.0.1"
 edition = "2021"
 license = "MIT"
 
