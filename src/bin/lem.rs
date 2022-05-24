@@ -23,10 +23,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                         println!("Executing {}", path.display());
                         let script = std::fs::read_to_string(path)?;
                         // this doesn't check for things like \n or \r
-                        if !script.trim().is_empty() {
-                            lem::execute_script(&script);
-                        } else {
+                        if script.trim().is_empty() {
                             eprintln!("The provided script file is empty");
+                        } else {
+                            lem::execute_script(&script);
                         }
                     } else {
                         eprintln!("The provided file does not have the .lem extension:");
