@@ -9,7 +9,7 @@ license = "MIT"
 
 [dependencies]
 clap = { version = "3.1.2", features = ["cargo", "derive"] }
-pest = { git = "https://github.com/lemonmobile/pest" }
+pest = "2.5.2"
 pest_derive = "2.1.0"
 stopwatch = "0.0.7"
 

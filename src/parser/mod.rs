@@ -19,7 +19,7 @@ impl LemParser {
                 });
                 println!("location: {:?}", err.location);
                 println!("variant: {:?}", err.variant);
-                println!("line: {}", err.line);
+                println!("line: {}", err.line());
                 let new_err = err.renamed_rules(|rule| {
                     match *rule {
                         Rule::value => "string".to_owned(),
