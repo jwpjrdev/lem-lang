@@ -13,22 +13,34 @@ impl LemParser {
         match LemParser::parse(Rule::file, script) {
             Ok(parse_tree) => parse_tree,
             Err(err) => {
-                println!("position: {}", match err.line_col {
-                    LineColLocation::Pos((line, col)) => format!("{}:{}", line, col),
-                    LineColLocation::Span(line, col) => format!("{:?}:{:?}", line, col), // what's this for??
-                });
-                println!("location: {:?}", err.location);
-                println!("variant: {:?}", err.variant);
-                println!("line: {}", err.line());
-                let new_err = err.renamed_rules(|rule| {
-                    match *rule {
-                        Rule::value => "string".to_owned(),
-                        _ => "thing".to_owned(),
-                    }
-                });
-                panic!("{new_err}");
+                // println!("position: {}", match err.line_col {
+                //     LineColLocation::Pos((line, col)) => format!("{}:{}", line, col),
+                //     LineColLocation::Span(line, col) => format!("{:?}:{:?}", line, col), // what's this for??
+                // });
+                let (line, col) = match err.line_col {
+                    LineColLocation::Pos((line, col)) => (line, col),
+                    _ => unreachable!(),
+                };
+                // println!("location: {:?}", err.location);
+                // println!("variant: {:?}", err.variant);
+                // println!("line: {}", err.line());
+
+                // let new_err = err.renamed_rules(|rule| {
+                //     match *rule {
+                //         Rule::value => "string".to_owned(),
+                //         _ => "thing".to_owned(),
+                //     }
+                // });
+                // panic!("{new_err}");
+                panic!(
+                    "\n--> error at: {:?}\n  |\n{} | {}\n  | {}^\n",
+                    err.location,
+                    line,
+                    err.line(),
+                    " ".repeat(col - 1),
+                );
             }
         }
-            // .unwrap_or_else(|err| panic!("{err}"));
+        // .unwrap_or_else(|err| panic!("{err}"));
     }
 }

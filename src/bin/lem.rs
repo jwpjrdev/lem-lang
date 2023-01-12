@@ -1,4 +1,4 @@
-use clap::{command, arg};
+use clap::{arg, command};
 use std::path::Path;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -6,13 +6,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let matches = command!()
         .name("lem-cli")
         .arg_required_else_help(true)
-        .arg(
-            arg!([script])
-                .takes_value(true)
-                .allow_invalid_utf8(true)
-            )
+        .arg(arg!([script]).takes_value(true).allow_invalid_utf8(true))
         .get_matches();
-    
+
     if let Some(raw_path) = matches.value_of_os("script") {
         let path = Path::new(raw_path);
         if path.exists() {

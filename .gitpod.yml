@@ -13,5 +13,5 @@ ports:
 
 vscode:
   extensions:
-    - matklad.rust-analyzer
+    - rust-lang.rust-analyzer
     - xoronic.pestfile
