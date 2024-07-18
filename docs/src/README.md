@@ -4,7 +4,7 @@ Lem is a minimal, only-what-you-need scripting language, built as an alternative
 
 ## Why?
 
-While Bash has proven powerful again and again, its scripts have also proved unmaintainable time and time again. This is in part due to its unclear syntax. Lem strives to have a simplistic, readable syntax that will make maintaining scripts much more enjoyable.
+While Bash has proven powerful again and again, its scripts have also proved unmaintainable time and time again. This is in part due to its unclear syntax. Lem aims to have a simplistic, readable syntax that makes maintaining scripts much more enjoyable.
 
 Unlike Bash, Lem attempts to provide a single way to perform a single operation. Bash is notably able to do one thing in four or five different ways, which can make it hard for maintainers to remember what does what without comments littered across the script.
 
